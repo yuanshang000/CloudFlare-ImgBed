@@ -66,13 +66,14 @@ export async function onRequest(context) {
         if (resType == 'text') {
             return new Response(randomUrl, { status: 200 });
         } else {
-            // return new Response(JSON.stringify({ url: 'https://fandai-blond.vercel.app/img' + randomUrl }), { status: 200 });
+            // return new Response(JSON.stringify({ url:'tuchuang.yssc0.top'+randomUrl }), { status: 200 });
             return new Response(null, {
-    status: 301,
+    status: 302,
     headers: {
-        Location: 'https://fandai-blond.vercel.app/img' + randomUrl
+        Location: ''tuchuang.yssc0.top' + randomUrl
     }
 });
+
         }
     }
 }
