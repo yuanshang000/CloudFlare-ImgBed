@@ -70,7 +70,7 @@ export async function onRequest(context) {
             return new Response(null, {
     status: 302,
     headers: {
-        Location: ''tuchuang.yssc0.top' + randomUrl
+        Location: 'https://tuchuang.yssc0.top' + randomUrl
     }
 });
 
