@@ -51,7 +51,7 @@ export async function onRequest(context) {
                 contentType = res.headers.get('content-type');
                 return res.blob();
             }), {
-                headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg/jpg' },
+                headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg' },
                 status: 200
             });
         }
