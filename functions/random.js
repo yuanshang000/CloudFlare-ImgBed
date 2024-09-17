@@ -44,18 +44,34 @@ export async function onRequest(context) {
         }
        // if param 'type' is set to 'img', return the image
         
-        if (randomType == 'img') {
-            // Return an image response
-            randomUrl = protocol + '//' + domain + ':' + port + randomPath;
-            let contentType = 'image/jpeg';
-            return new Response(await fetch(randomUrl).then(res => {
-                contentType = res.headers.get('content-type');
-                return res.blob();
-            }), {
-                headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg' },
-                status: 200
-            });
-        }
+        // if (randomType == 'img') {
+        //     // Return an image response
+        //     randomUrl = protocol + '//' + domain + ':' + port + randomPath;
+        //     let contentType = 'image/jpeg';
+        //     return new Response(await fetch(randomUrl).then(res => {
+        //         contentType = res.headers.get('content-type');
+        //         return res.blob();
+        //     }), {
+        //         headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg' },
+        //         status: 200
+        //     });
+        // }
+
+        if (randomType === 'img') {
+    // 构建图片的URL
+    randomUrl = protocol + '//' + domain + ':' + port + randomPath;
+    
+    // Fetch图片数据
+    let response = await fetch(randomUrl);
+    let contentType = response.headers.get('content-type') || 'image/jpeg';
+    let imageBlob = await response.blob();
+    
+    // 返回图片响应
+    return new Response(imageBlob, {
+        headers: { 'Content-Type': contentType },
+        status: 200
+    });
+}
 
 
 
@@ -66,7 +82,7 @@ export async function onRequest(context) {
         if (resType == 'text') {
             return new Response(randomUrl, { status: 200 });
         } else {
-            return new Response(JSON.stringify({ url:'tuchuang.yssc0.top'+randomUrl }), { status: 200 });
+            return new Response(JSON.stringify({ url:randomUrl }), { status: 200 });
            
 
         }
