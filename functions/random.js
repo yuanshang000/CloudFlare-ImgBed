@@ -43,6 +43,7 @@ export async function onRequest(context) {
             }
         }
        // if param 'type' is set to 'img', return the image
+        
         if (randomType == 'img') {
             // Return an image response
             randomUrl = protocol + '//' + domain + ':' + port + randomPath;
@@ -51,7 +52,7 @@ export async function onRequest(context) {
                 contentType = res.headers.get('content-type');
                 return res.blob();
             }), {
-                headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg' },
+                headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg/jpg' },
                 status: 200
             });
         }
