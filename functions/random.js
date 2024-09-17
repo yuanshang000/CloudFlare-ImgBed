@@ -43,18 +43,37 @@ export async function onRequest(context) {
             }
         }
         // if param 'type' is set to 'img', return the image
+        // if (randomType == 'img') {
+        //     // Return an image response
+        //     randomUrl = protocol + '//' + domain + ':' + port + randomPath;
+        //     let contentType = 'image/jpeg';
+        //     return new Response(await fetch(randomUrl).then(res => {
+        //         contentType = res.headers.get('content-type');
+        //         return res.blob();
+        //     }), {
+        //         headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg/jpg' },
+        //         status: 200
+        //     });
+        // }
         if (randomType == 'img') {
             // Return an image response
-            randomUrl = protocol + '//' + domain + ':' + port + randomPath;
-            let contentType = 'image/jpeg';
-            return new Response(await fetch(randomUrl).then(res => {
-                contentType = res.headers.get('content-type');
-                return res.blob();
-            }), {
-                headers: contentType ? { 'Content-Type': contentType } : { 'Content-Type': 'image/jpeg' },
-                status: 200
-            });
-        }
+                randomUrl = protocol + '//' + domain + ':' + port + randomPath;
+
+    // Fetch the image from the random URL
+                return new Response(await fetch(randomUrl).then(res => {
+        // Try to get the Content-Type from the response
+                    let contentType = res.headers.get('content-type') || 'image/jpeg';  // Default to 'image/jpeg'
+                    return res.blob().then(blob => {
+                        return new Response(blob, {
+                            headers: { 'Content-Type': contentType },  // Use the fetched Content-Type or default
+                            status: 200
+                        });
+                    });
+                }));
+            }    
+
+
+        
         
         if (resType == 'text') {
             return new Response(randomUrl, { status: 200 });
