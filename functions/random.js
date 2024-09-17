@@ -47,7 +47,7 @@ export async function onRequest(context) {
         if (randomType == 'img') {
             // Return an image response
             randomUrl = protocol + '//' + domain + ':' + port + randomPath;
-            let contentType = 'image/jpeg';
+            let contentType = 'image/jpeg/jpg';
             return new Response(await fetch(randomUrl).then(res => {
                 contentType = res.headers.get('content-type');
                 return res.blob();
