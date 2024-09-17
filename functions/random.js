@@ -42,7 +42,7 @@ export async function onRequest(context) {
                 randomUrl = protocol + '//' + domain + randomPath;
             }
         }
-       //if param 'type' is set to 'img', return the image
+       // if param 'type' is set to 'img', return the image
         if (randomType == 'img') {
             // Return an image response
             randomUrl = protocol + '//' + domain + ':' + port + randomPath;
