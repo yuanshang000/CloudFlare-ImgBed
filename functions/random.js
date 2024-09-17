@@ -66,13 +66,8 @@ export async function onRequest(context) {
         if (resType == 'text') {
             return new Response(randomUrl, { status: 200 });
         } else {
-            // return new Response(JSON.stringify({ url:'tuchuang.yssc0.top'+randomUrl }), { status: 200 });
-            return new Response(null, {
-    status: 302,
-    headers: {
-        Location: 'https://tuchuang.yssc0.top' + randomUrl
-    }
-});
+            return new Response(JSON.stringify({ url:'tuchuang.yssc0.top'+randomUrl }), { status: 200 });
+           
 
         }
     }
